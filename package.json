@@ -1,0 +1,36 @@
+{
+  "name": "aem-wknd-headless-react-sandbox",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/aem/pull-gql-schema && node scripts/aem/pull-content-fragments",
+    "dev:gql": "nodemon --watch aem-local -e json,graphql,jpg gql-server.js",
+    "dev": "concurrently \"npm run dev:gql\" \"vite --open\""
+  },
+  "dependencies": {
+    "@adobe/aem-headless-client-js": "^3.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.2"
+  },
+  "devDependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.5.5",
+    "@graphql-tools/load": "^7.8.0",
+    "@graphql-tools/mock": "^8.7.6",
+    "@graphql-tools/schema": "^9.0.4",
+    "@vitejs/plugin-react": "^2.1.0",
+    "casual": "^1.6.2",
+    "concurrently": "^7.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "fs-extra": "^10.1.0",
+    "graphql": "^15.8.0",
+    "node-fetch": "^3.2.10",
+    "nodemon": "^2.0.20",
+    "object-scan": "^18.5.1",
+    "vite": "^3.1.8"
+  }
+}
