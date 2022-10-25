@@ -31,13 +31,7 @@ async function fetchAdventures() {
 }
 
 function Adventures() {
-  const {
-    isLoading,
-    isError,
-    data: adventures
-  } = useQuery('adventures', fetchAdventures, {
-    refetchInterval: 1000
-  });
+  const { isLoading, isError, data: adventures } = useQuery('adventures', fetchAdventures);
 
   if (isLoading) {
     return <span>Loading adventures ...</span>;

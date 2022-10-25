@@ -13,13 +13,13 @@ This project was bootstrapped with [Vite](https://vitejs.dev/guide/).
   />
 </a>
 
-### Commands 
+### Commands
 
 First, install the dependencies e.g. with `npm i`
 
-* `npm run aem:pull` - pulls the AEM WKND GraphQL schema and content fragments into the `aem-local` folder. To pull fresh content, delete the folder and re-run the command.
-* `npm run gql` - runs the GraphQL development server.
-* `npm run dev` - runs the GraphQL and the Vite development server.   
+- `npm run aem:pull` - pulls the AEM WKND GraphQL schema and content fragments into the `aem-local` folder. To pull fresh content, delete the folder and re-run the command.
+- `npm run gql` - runs the GraphQL development server.
+- `npm run dev` - runs the GraphQL and the Vite development server.
 
 ## How does it work ?
 
