@@ -6,7 +6,12 @@ This project was bootstrapped with [Vite](https://vitejs.dev/guide/).
 
 ## Get started
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/AdobeDocs/aem-wknd-headless-react-sandbox?title='AEM WKND Headless React Sandbox'&terminal=dev)
+<a href="https://stackblitz.com/fork/github/AdobeDocs/aem-wknd-headless-react-sandbox?title='AEM WKND Headless React Sandbox'&terminal=dev">
+  <img
+    alt="Open in StackBlitz"
+    src="https://developer.stackblitz.com/img/open_in_stackblitz.svg"
+  />
+</a>
 
 ## How does it work ?
 
@@ -18,7 +23,7 @@ The content is stored under the `aem-local` folder:
 - `aem-local/assets` - for every content fragment, each asset reference is retrieved and stored by replicating the same folder structure e.g `/assets/content/dam/wknd/end/adventures/bali-surf-camp/AdobeStock_175749320.jpg`.
 
 Once the `aem-local` folder is populated with content fragments, a local [Express](https://expressjs.com/) web server is started `gql-server.js` to serve the content fragments and assets by exposing a GraphQL client on `http://localhost:3000/gql`.
-Custom Content Fragment Model Properties defined in the GraphQL schema are randomly auto-generated for types like strings or numbers.  
+Custom Content Fragment Model properties defined in the GraphQL schema have auto-generated values for types like strings or numbers.  
 A local [GraphiQL](https://github.com/graphql/graphiql) IDE is also available by default at `http://localhost:3000/gql`.
 
 In parallel, the Vite development server is started to serve the React application on `http://localhost:5173` with Hot Module Reload enabled by default.
