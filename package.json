@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "node scripts/aem/pull-gql-schema && node scripts/aem/pull-content-fragments",
-    "dev:gql": "nodemon --watch aem-local -e json,graphql,jpg gql-server.js",
-    "dev": "concurrently \"npm run dev:gql\" \"vite --open\""
+    "aem:pull": "node scripts/aem/pull-gql-schema && node scripts/aem/pull-content-fragments",
+    "gql": "nodemon --watch aem-local -e json,graphql,jpg gql-server.js",
+    "dev": "concurrently \"npm run gql\" \"vite --open\""
   },
   "dependencies": {
     "@adobe/aem-headless-client-js": "^3.1.1",

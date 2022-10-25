@@ -6,12 +6,20 @@ This project was bootstrapped with [Vite](https://vitejs.dev/guide/).
 
 ## Get started
 
-<a href="https://stackblitz.com/fork/github/AdobeDocs/aem-wknd-headless-react-sandbox?title='AEM WKND Headless React Sandbox'&terminal=dev">
+<a href="https://stackblitz.com/fork/github/AdobeDocs/aem-wknd-headless-react-sandbox?title=AEM WKND Headless React Sandbox&terminal=dev">
   <img
     alt="Open in StackBlitz"
     src="https://developer.stackblitz.com/img/open_in_stackblitz.svg"
   />
 </a>
+
+### Commands 
+
+First, install the dependencies e.g. with `npm i`
+
+* `npm run aem:pull` - pulls the AEM WKND GraphQL schema and content fragments into the `aem-local` folder. To pull fresh content, delete the folder and re-run the command.
+* `npm run gql` - runs the GraphQL development server.
+* `npm run dev` - runs the GraphQL and the Vite development server.   
 
 ## How does it work ?
 

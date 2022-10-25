@@ -1,0 +1,532 @@
+schema {
+  query: QueryType
+}
+
+directive @resolver(name: String, options: String, source: String) on UNION
+
+directive @fetcher(name: String, options: String, source: String) on FIELD_DEFINITION
+
+"""Marks a connection type according to the Relay specification."""
+directive @connection(
+  """The type for which the connection is created."""
+  for: String!
+) on FIELD_DEFINITION
+
+type AdventureModel {
+  _path: ID
+  _variation: String
+  adventureTitle: String
+  adventureDescription: MultiFormatString
+  adventureType: String
+  adventureTripLength: String
+  adventureActivity: String
+  adventureGroupSize: String
+  adventureDifficulty: String
+  adventurePrice: String
+  adventurePrimaryImage: Reference
+  adventureItinerary: MultiFormatString
+  adventureGearList: MultiFormatString
+  _metadata: TypedMetaData
+  _variations: [String]
+  _model: ModelInfo
+}
+
+input AdventureModelArrayFilter {
+  _match: AdventureModelFilter
+  _apply: ArrayMode
+  _instances: Int
+}
+
+input AdventureModelFilter {
+  _logOp: LogOp = AND
+  _path: IDFilter
+  _variation: StringFilter
+  adventureTitle: StringFilter
+  adventureDescription: MultiFormatStringFilter
+  adventureType: StringFilter
+  adventureTripLength: StringFilter
+  adventureActivity: StringFilter
+  adventureGroupSize: StringFilter
+  adventureDifficulty: StringFilter
+  adventurePrice: StringFilter
+  adventureItinerary: MultiFormatStringFilter
+  adventureGearList: MultiFormatStringFilter
+  _variations: StringArrayFilter
+}
+
+type AdventureModelResult {
+  item: AdventureModel!
+  _references: [Reference]
+}
+
+type AdventureModelResults {
+  items: [AdventureModel]!
+  _references: [Reference]
+}
+
+union AllFragmentModels = ArticleModel | AdventureModel
+
+type ArchiveRef {
+  type: String
+  _path: ID
+  _authorUrl: String
+  _publishUrl: String
+  size: Int
+  format: String
+}
+
+enum ArrayMode {
+  AT_LEAST_ONCE
+  ALL
+  ALL_OR_EMPTY
+  INSTANCES
+}
+
+type ArticleModel {
+  _path: ID
+  _variation: String
+  author: String
+  main: MultiFormatString
+  _metadata: TypedMetaData
+  _variations: [String]
+  _model: ModelInfo
+}
+
+input ArticleModelArrayFilter {
+  _match: ArticleModelFilter
+  _apply: ArrayMode
+  _instances: Int
+}
+
+input ArticleModelFilter {
+  _logOp: LogOp = AND
+  _path: IDFilter
+  _variation: StringFilter
+  author: StringFilter
+  main: MultiFormatStringFilter
+  _variations: StringArrayFilter
+}
+
+type ArticleModelResult {
+  item: ArticleModel!
+  _references: [Reference]
+}
+
+type ArticleModelResults {
+  items: [ArticleModel]!
+  _references: [Reference]
+}
+
+input BooleanArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [BooleanArrayFilterExpression]!
+}
+
+input BooleanArrayFilterExpression {
+  value: Boolean
+  values: [Boolean]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: BooleanOperator = EQUALS
+}
+
+type BooleanArrayMetadata {
+  name: String!
+  value: [Boolean]!
+}
+
+input BooleanFilter {
+  _logOp: LogOp = AND
+  _expressions: [BooleanFilterExpression]!
+}
+
+input BooleanFilterExpression {
+  value: Boolean
+  _operator: BooleanOperator = EQUALS
+}
+
+type BooleanMetadata {
+  name: String!
+  value: Boolean!
+}
+
+enum BooleanOperator {
+  EQUALS
+}
+
+"""
+com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@2a6af12b
+"""
+scalar Calendar
+
+input CalendarArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [CalendarArrayFilterExpression]!
+}
+
+input CalendarArrayFilterExpression {
+  value: Calendar
+  values: [Calendar]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: CalendarOperator = AT
+}
+
+type CalendarArrayMetadata {
+  name: String!
+  value: [Calendar]!
+}
+
+input CalendarFilter {
+  _logOp: LogOp = AND
+  _expressions: [CalendarFilterExpression]!
+}
+
+input CalendarFilterExpression {
+  value: Calendar
+  _operator: CalendarOperator = AT
+}
+
+type CalendarMetadata {
+  name: String!
+  value: Calendar!
+}
+
+enum CalendarOperator {
+  AT
+  NOT_AT
+  BEFORE
+  AT_OR_BEFORE
+  AFTER
+  AT_OR_AFTER
+}
+
+"""
+com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@2c900e67
+"""
+scalar Date
+
+input DateArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [DateArrayFilterExpression]!
+}
+
+input DateArrayFilterExpression {
+  value: Date
+  values: [Date]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: DateOperator = AT
+}
+
+input DateFilter {
+  _logOp: LogOp = AND
+  _expressions: [DateFilterExpression]!
+}
+
+input DateFilterExpression {
+  value: Date
+  _operator: DateOperator = AT
+}
+
+enum DateOperator {
+  AT
+  NOT_AT
+  BEFORE
+  AT_OR_BEFORE
+  AFTER
+  AT_OR_AFTER
+}
+
+type DocumentRef {
+  type: String
+  _path: ID
+  _authorUrl: String
+  _publishUrl: String
+  size: Int
+  author: String
+  format: String
+}
+
+input FloatArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [FloatArrayFilterExpression]!
+}
+
+input FloatArrayFilterExpression {
+  value: Float
+  values: [Float]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: FloatOperator = EQUAL
+  _sensitiveness: Float
+}
+
+type FloatArrayMetadata {
+  name: String!
+  value: [Float]!
+}
+
+input FloatFilter {
+  _logOp: LogOp = AND
+  _expressions: [FloatFilterExpression]!
+}
+
+input FloatFilterExpression {
+  value: Float
+  _operator: FloatOperator = EQUAL
+  _sensitiveness: Float
+}
+
+type FloatMetadata {
+  name: String!
+  value: Float!
+}
+
+enum FloatOperator {
+  EQUAL
+  UNEQUAL
+  GREATER
+  GREATER_EQUAL
+  LOWER
+  LOWER_EQUAL
+}
+
+input IDArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [IDArrayFilterExpression]!
+}
+
+input IDArrayFilterExpression {
+  value: ID
+  values: [ID]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: IDOperator = EQUALS
+}
+
+input IDFilter {
+  _logOp: LogOp = AND
+  _expressions: [IDFilterExpression]!
+}
+
+input IDFilterExpression {
+  value: ID
+  _operator: IDOperator = EQUALS
+}
+
+enum IDOperator {
+  EQUALS
+  EQUALS_NOT
+  STARTS_WITH
+}
+
+type ImageRef {
+  type: String
+  _path: ID
+  _authorUrl: String
+  _publishUrl: String
+  width: Int
+  height: Int
+  mimeType: String
+}
+
+input IntArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [IntArrayFilterExpression]!
+}
+
+input IntArrayFilterExpression {
+  value: Int
+  values: [Int]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: IntOperator = EQUAL
+}
+
+type IntArrayMetadata {
+  name: String!
+  value: [Int]!
+}
+
+input IntFilter {
+  _logOp: LogOp = AND
+  _expressions: [IntFilterExpression]!
+}
+
+input IntFilterExpression {
+  value: Int
+  _operator: IntOperator = EQUAL
+}
+
+type IntMetadata {
+  name: String!
+  value: Int!
+}
+
+enum IntOperator {
+  EQUAL
+  UNEQUAL
+  GREATER
+  GREATER_EQUAL
+  LOWER
+  LOWER_EQUAL
+}
+
+"""
+com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@11cac4ce
+"""
+scalar Json
+
+enum LogOp {
+  AND
+  OR
+}
+
+type ModelInfo {
+  _path: ID
+  title: String
+}
+
+type MultiFormatString {
+  html: String
+  markdown: String
+  plaintext: String
+  json: Json
+}
+
+input MultiFormatStringArrayFilter {
+  _match: MultiFormatStringFilter
+  _apply: ArrayMode
+  _instances: Int
+}
+
+input MultiFormatStringFilter {
+  _logOp: LogOp = AND
+  html: StringFilter
+  markdown: StringFilter
+  plaintext: StringFilter
+}
+
+type MultimediaRef {
+  type: String
+  _path: ID
+  _authorUrl: String
+  _publishUrl: String
+  size: Int
+  format: String
+}
+
+type PageRef {
+  type: String
+  _path: ID
+  _authorUrl: String
+  _publishUrl: String
+}
+
+type QueryType {
+  """Get a single `article`, specified by its path and optional variation"""
+  articleByPath(_path: String!, variation: String): ArticleModelResult!
+
+  """Get a single `adventure`, specified by its path and optional variation"""
+  adventureByPath(_path: String!, variation: String): AdventureModelResult!
+
+  """Get multiple `article` objects"""
+  articleList(filter: ArticleModelFilter, variation: String, _locale: String): ArticleModelResults!
+
+  """Get multiple `adventure` objects"""
+  adventureList(filter: AdventureModelFilter, variation: String, _locale: String): AdventureModelResults!
+}
+
+union Reference = PageRef | ImageRef | MultimediaRef | ArchiveRef | DocumentRef | ArticleModel | AdventureModel
+
+input StringArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [StringArrayFilterExpression]!
+}
+
+input StringArrayFilterExpression {
+  value: String
+  values: [String]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: StringOperator = EQUALS
+}
+
+type StringArrayMetadata {
+  name: String!
+  value: [String]!
+}
+
+input StringFilter {
+  _logOp: LogOp = AND
+  _expressions: [StringFilterExpression]!
+}
+
+input StringFilterExpression {
+  value: String
+  _operator: StringOperator = EQUALS
+  _ignoreCase: Boolean
+}
+
+type StringMetadata {
+  name: String!
+  value: String!
+}
+
+enum StringOperator {
+  EQUALS
+  EQUALS_NOT
+  CONTAINS
+  CONTAINS_NOT
+}
+
+"""
+com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@20ca93d4
+"""
+scalar Time
+
+input TimeArrayFilter {
+  _logOp: LogOp = AND
+  _expressions: [TimeArrayFilterExpression]!
+}
+
+input TimeArrayFilterExpression {
+  value: Time
+  values: [Time]
+  _apply: ArrayMode
+  _instances: Int
+  _operator: TimeOperator = AT
+}
+
+input TimeFilter {
+  _logOp: LogOp = AND
+  _expressions: [TimeFilterExpression]!
+}
+
+input TimeFilterExpression {
+  value: Time
+  _operator: TimeOperator = AT
+}
+
+enum TimeOperator {
+  AT
+  NOT_AT
+  BEFORE
+  AT_OR_BEFORE
+  AFTER
+  AT_OR_AFTER
+}
+
+type TypedMetaData {
+  stringMetadata: [StringMetadata]!
+  stringArrayMetadata: [StringArrayMetadata]!
+  intMetadata: [IntMetadata]!
+  intArrayMetadata: [IntArrayMetadata]!
+  floatMetadata: [FloatMetadata]!
+  floatArrayMetadata: [FloatArrayMetadata]!
+  booleanMetadata: [BooleanMetadata]!
+  booleanArrayMetadata: [BooleanArrayMetadata]!
+  calendarMetadata: [CalendarMetadata]!
+  calendarArrayMetadata: [CalendarArrayMetadata]!
+}
