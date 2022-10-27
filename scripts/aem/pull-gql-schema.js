@@ -1,11 +1,10 @@
-import fs from 'fs-extra';
 import fetch from 'node-fetch';
-import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql';
-import { getConfig, hasGQLSchema } from './utils.js';
+import { getIntrospectionQuery } from 'graphql';
+import { getConfig, hasGQLSchema, createGQLSchema } from './utils.js';
 
 (async () => {
   if (!hasGQLSchema()) {
-    const { AEM_SERVER, AEM_GQL_ENDPOINT, SCHEMA_PATH } = getConfig();
+    const { AEM_SERVER, AEM_GQL_ENDPOINT } = getConfig();
 
     const url = `${AEM_SERVER}${AEM_GQL_ENDPOINT}`;
     console.log(`Pulling the GraphQL schema from ${url} ...`);
@@ -19,12 +18,7 @@ import { getConfig, hasGQLSchema } from './utils.js';
 
       const schema = (await response.json()).data;
 
-      const graphqlSchemaObj = buildClientSchema(schema);
-      const sdlString = printSchema(graphqlSchemaObj);
-      fs.ensureFileSync(SCHEMA_PATH);
-      fs.writeFileSync(SCHEMA_PATH, sdlString);
-
-      console.log(`Successfully created "${SCHEMA_PATH}"`);
+      createGQLSchema(schema);
     } catch (e) {
       console.error('Something went wrong...');
       console.error(e);

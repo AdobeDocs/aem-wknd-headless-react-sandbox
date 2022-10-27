@@ -19,10 +19,22 @@ import { getConfig, hasGQLSchema, loadGQLSchema, getAssetsDir, loadAllCFs } from
     const typeDefs = await loadGQLSchema();
     const QueryType = {};
 
-    loadAllCFs(({ resolverName, data }) => {
-      QueryType[resolverName] = () => {
+    loadAllCFs(({ name, resolverList, resolverByPath, data }) => {
+      QueryType[resolverList] = () => {
         return {
-          items: data[resolverName].items
+          items: data[resolverList].items
+        };
+      };
+
+      QueryType[resolverByPath] = (_, { _path }) => {
+        const item = data[resolverList].items.find((item) => item._path === _path);
+
+        if (!item) {
+          throw new Error(`Couldn't find ${name} with _path ${_path}`);
+        }
+
+        return {
+          item
         };
       };
     });

@@ -4,17 +4,19 @@ import {
   getConfig,
   hasGQLSchema,
   hasCFs,
+  hasAssets,
+  createCFs,
+  cleanCFs,
   fetchModels,
   runGQLQuery,
   fetchReferences,
   getAssetPaths,
   createAsset,
-  hasAssets
+  cleanAssets
 } from './utils.js';
-import fs from 'fs-extra';
 import path from 'node:path';
 
-const { AEM_SERVER, AEM_GQL_ENDPOINT, CFS_PATH, ASSETS_PATH } = getConfig();
+const { AEM_SERVER, AEM_GQL_ENDPOINT } = getConfig();
 
 (async () => {
   if (hasGQLSchema() && !hasCFs()) {
@@ -27,7 +29,7 @@ const { AEM_SERVER, AEM_GQL_ENDPOINT, CFS_PATH, ASSETS_PATH } = getConfig();
     const models = await fetchModels();
 
     if (models.length) {
-      fs.emptyDirSync(CFS_PATH);
+      cleanCFs();
 
       const references = await fetchReferences();
 
@@ -79,16 +81,13 @@ const { AEM_SERVER, AEM_GQL_ENDPOINT, CFS_PATH, ASSETS_PATH } = getConfig();
         ${CFQuery}
       }`);
 
-        const filePath = path.join(CFS_PATH, `${listName}.json`);
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        createCFs({ name: listName, data });
 
-        console.log(`Successfully created "${filePath}"`);
-
-        // Create references
+        // Create assets
         if (!hasAssets()) {
           const assetPaths = getAssetPaths({ data, references });
           if (assetPaths.length) {
-            fs.emptyDirSync(ASSETS_PATH);
+            cleanAssets();
 
             assetPaths.forEach(async (assetPath) => {
               await createAsset({

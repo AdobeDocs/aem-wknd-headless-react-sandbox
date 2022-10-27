@@ -64,7 +64,10 @@ async function loadGQLSchema() {
 function createGQLSchema(schema) {
   const graphqlSchemaObj = buildClientSchema(schema);
   const sdlString = printSchema(graphqlSchemaObj);
+  fs.ensureFileSync(SCHEMA_PATH);
   fs.writeFileSync(SCHEMA_PATH, sdlString);
+
+  console.log(`Successfully created "${SCHEMA_PATH}"`);
 }
 
 function cleanCFs() {
@@ -78,27 +81,21 @@ function hasCFs() {
 function loadAllCFs(callback) {
   if (fs.existsSync(CFS_PATH)) {
     fs.readdirSync(CFS_PATH).forEach((filename) => {
-      const resolverName = filename.replace('.json', '');
+      const resolverList = filename.replace('.json', '');
+      const name = resolverList.slice(0, -4);
+      const resolverByPath = `${name}ByPath`;
       const { data } = fs.readJsonSync(path.join(CFS_PATH, filename));
 
-      callback({ resolverName, data });
+      callback({ name, resolverList, resolverByPath, data });
     });
-  }
-}
-
-function loadCFs(model) {
-  try {
-    return fs.readJsonSync(path.join(CFS_PATH, `${model.toLowerCase().replace('model', 'List')}.json`));
-  } catch (e) {
-    return null;
   }
 }
 
 function createCFs({ name, data }) {
   const filePath = path.join(CFS_PATH, `${name}.json`);
-  fs.writeFileSync(filePath, data);
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
-  console.log(`Created: ${filePath}`);
+  console.log(`Successfully created "${filePath}"`);
 }
 
 function cleanAssets() {
@@ -172,7 +169,6 @@ export {
   hasAssets,
   hasCFs,
   cleanCFs,
-  loadCFs,
   loadAllCFs,
   createCFs,
   getAssetsDir,

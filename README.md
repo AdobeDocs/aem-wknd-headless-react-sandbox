@@ -38,6 +38,52 @@ In parallel, the Vite development server is started to serve the React applicati
 
 [AEM Headless Client JS](https://github.com/adobe/aem-headless-client-js) is used together with [React Query](https://react-query-v3.tanstack.com/) to handle the content fragment data fetching from the GraphQL development server in the React application.
 
+## Supported queries
+
+For the sake of the demo, only the simplest resolvers were implemented namely, listing items and querying by path. 
+
+Sor for example, you can list adventures and retrieve assets with the following query (which is used in the React application): 
+
+```gql
+{
+  adventureList {
+    items {
+      _path
+      adventureTitle
+      adventureDescription {
+        plaintext
+      }
+      adventurePrimaryImage {
+        ... on ImageRef {
+          _path
+        }
+      }
+    }
+  }
+} 
+```
+
+You can also query an adventure by path: 
+
+```gql 
+query getAdventure($path: String!){
+  adventureByPath(_path: $path) {
+    item {
+      adventureTitle
+    }
+  }
+}
+```
+
+Query variables: 
+
+```json
+{"path": "/content/dam/wknd/en/adventures/bali-surf-camp/bali-surf-camp"}
+```
+
+GraphQL directives, filters or variation selection is not implemented but it should be technically straight forward to add it as well to `gql-server.js`. 
+Feel free to submit a Pull Request if required.
+
 ### Environment Variables
 
 Several [environment variables](https://vitejs.dev/guide/env-and-mode.html) are to connect to an AEM environment and the GraphQL development server.
