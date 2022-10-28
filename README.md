@@ -81,8 +81,10 @@ Query variables:
 {"path": "/content/dam/wknd/en/adventures/bali-surf-camp/bali-surf-camp"}
 ```
 
-GraphQL directives, filters or variation selection is not implemented but it should be technically straight forward to add it as well to `gql-server.js`. 
-Feel free to submit a Pull Request if required.
+GraphQL directives, filters and variation selection implementations are missing but it should be technically straight forward to add them to `gql-server.js`. 
+Persisted queries are not supported neither. 
+
+Feel free to submit a Pull Request if you'll like to add these features. 
 
 ### Environment Variables
 
