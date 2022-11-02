@@ -17,7 +17,7 @@ This project was bootstrapped with [Vite](https://vitejs.dev/guide/).
 
 First, install the dependencies e.g. with `npm i`
 
-- `npm run aem:pull` - pulls the AEM WKND GraphQL schema and content fragments into the `aem-local` folder. To pull fresh content, delete the folder and re-run the command.
+- `npm run aem:pull` - pulls the AEM WKND GraphQL schema and content fragments into the `aem-local` folder. To pull fresh content, delete the folder and re-run the command. **This command fails if executed from StackBlitz for CORS reasons. You can either [allow CORS for the AEM instance](https://experienceleague.adobe.com/docs/experience-manager-learn/foundation/security/understand-cross-origin-resource-sharing.html) or modify your browser CORS behavior e.g. by installing an extension like [Allow CORS](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en)**
 - `npm run gql` - runs the GraphQL development server.
 - `npm run dev` - runs the GraphQL and the Vite development server.
 
