@@ -86,7 +86,7 @@ Persisted queries are not supported neither.
 
 Feel free to submit a Pull Request if you'll like to add these features. 
 
-### Environment Variables
+## Environment Variables
 
 Several [environment variables](https://vitejs.dev/guide/env-and-mode.html) are to connect to an AEM environment and the GraphQL development server.
 Environment variables prefixed with `VITE_` are accessible client-side by default.
@@ -99,3 +99,15 @@ If you wish to change environment variables update the `.env` file accordingly:
 
 - `AEM_SERVER = https://wknd.site` - AEM production server
 - `AEM_GQL_ENDPOINT = /content/_cq_graphql/global/endpoint.json` - AEM production GraphQL endpoint from where to retrieve GraphQL schema and Content Fragments
+
+
+## Issue tracker
+
+Use the [GitHub issue tracker](https://github.com/AdobeDocs/aem-wknd-headless-react-sandbox/issues) to report issues or ask questions.
+Any feedback is welcome !
+
+Please check existing issues before filing anything new.
+
+## Contributing
+
+Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
