@@ -44,7 +44,7 @@ async function fetchAdventures() {
 
 function Adventures() {
   const { isLoading, isError, data: adventures } = useQuery('adventures', fetchAdventures, {
-    refetchInterval: 2000
+    // refetchInterval: 2000
   });
 
   if (isLoading) {
